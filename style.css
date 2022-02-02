@@ -1,0 +1,31 @@
+.title{
+    font-size: 40px;
+}
+button{
+    background: aquamarine;
+    border-radius: 5px;
+}
+.container {
+    display: flex;
+    margin-top: 10px;
+}
+
+#upper-case {
+    padding: 4px;
+    margin-right: 4px;
+}
+
+#lower-case {
+    padding: 4px;
+    margin: 0 4px 0 4px;
+}
+
+#proper-case {
+    padding: 4px;
+    margin: 0 4px 0 4px;
+}
+
+#sentence-case {
+    padding: 4px;
+    margin: 0 4px 0 4px;
+}

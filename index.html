@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="title">Case Converter</div>
+    <textarea name="user_text" id="textarea" cols="60" rows="10"></textarea>
+    <div class="container">
+        <button id="upper-case">Upper Case</button>
+        <button id="lower-case">Lower Case</button>
+        <button id="proper-case">Proper Case</button>
+        <button id="sentence-case">Sentence Case</button>
+        <button id="save-text-file">Save text file</button>
+    </div>
+    <script>
+        const upperClick = document.getElementById("upper-case");
+        const lowerClick = document.getElementById("lower-case");
+        const properClick = document.getElementById("proper-case");
+        const sentenceClick = document.getElementById("sentence-case");
+        const saveClick = document.getElementById("save-text-file");
+        upperClick.addEventListener("click", function upperCase() {
+            let Case = document.getElementById("textarea").value;
+            let upperCase = Case.toUpperCase();
+            document.getElementById("textarea").value = upperCase; })
+        lowerClick.addEventListener("click", function lowerCase() {
+            let Case = document.getElementById("textarea").value;
+            let lowerCase = Case.toLowerCase();
+            document.getElementById("textarea").value = lowerCase; })
+        properClick.addEventListener("click", function titleCase() {
+                let sentence = document.getElementById("textarea").value.toLowerCase().split(" ");
+                for (let i = 0; i < sentence.length; i++) {
+                    sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+                }
+                let newSentence = sentence.join(" ");
+                document.getElementById("textarea").value = newSentence;
+            })
+        sentenceClick.addEventListener("click", function sentenceCase() {
+            let Case = document.getElementById("textarea").value;
+
+            function firstLetterUpper(Case) {
+                let newCase = Case.toLowerCase().replace(/(^\s*\w|[\.\!\?]\s*\w)/g,function(c){return c.toUpperCase()});
+                return newCase;
+            }
+
+            let newCase = firstLetterUpper(Case);
+            document.getElementById("textarea").value = newCase;
+        })
+        saveClick.addEventListener('click', function download(){
+            let element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(document.getElementById("textarea").value));
+            element.setAttribute('download', 'text.txt');
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        })
+    </script>
+</body>
+</html>
